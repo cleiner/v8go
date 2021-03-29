@@ -8,8 +8,10 @@ jobs:
     strategy:
       matrix:
         platform: [ubuntu-latest, macos-latest]
-        arch: [arm64, x64]
+        arch: [arm, arm64, x64]
         exclude:
+          - platform: macos-latest
+            arch: arm
           - platform: macos-latest
             arch: arm64
     runs-on: ${{ matrix.platform }}
@@ -22,6 +24,9 @@ jobs:
       - name: Install g++ (arm64)
         if: matrix.arch == 'arm64'
         run: sudo apt-get update && sudo apt-get install -y g++-aarch64-linux-gnu
+      - name: Install g++ (arm)
+        if: matrix.arch == 'arm'
+        run: sudo apt-get update && sudo apt-get install -y g++-arm-linux-gnueabihf
       - name: Build V8 linux/${{ matrix.arch }}
         if: matrix.platform == 'ubuntu-latest'
         run: cd deps && ./build.py --no-clang --arch=${{ matrix.arch }}

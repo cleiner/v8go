@@ -12,6 +12,7 @@ package v8go
 // #cgo windows LDFLAGS: -lv8_libplatform
 // #cgo darwin LDFLAGS: -L${SRCDIR}/deps/darwin_x64
 // #cgo linux,amd64 LDFLAGS: -L${SRCDIR}/deps/linux_x64
+// #cgo linux,arm LDFLAGS: -L${SRCDIR}/deps/linux_arm
 // #cgo linux,arm64 LDFLAGS: -L${SRCDIR}/deps/linux_arm64
 import "C"
 
@@ -23,6 +24,7 @@ import (
 	_ "rogchap.com/v8go/deps/include"
 	_ "rogchap.com/v8go/deps/include/cppgc"
 	_ "rogchap.com/v8go/deps/include/libplatform"
+	_ "rogchap.com/v8go/deps/linux_arm"
 	_ "rogchap.com/v8go/deps/linux_arm64"
 	_ "rogchap.com/v8go/deps/linux_x64"
 )
