@@ -101,7 +101,7 @@ def main():
     
     gn_path = os.path.join(tools_path, "gn")
     assert(os.path.exists(gn_path))
-    ninja_path = os.path.join(tools_path, "ninja" + ".exe" if is_windows else "")
+    ninja_path = os.path.join(tools_path, "ninja" + (".exe" if is_windows else ""))
     assert(os.path.exists(ninja_path))
 
     build_path = os.path.join(deps_path, ".build", os_arch())
