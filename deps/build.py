@@ -54,6 +54,7 @@ v8_enable_gdbjit=false
 v8_enable_i18n_support=false
 v8_enable_test_features=false
 v8_untrusted_code_mitigations=false
+exclude_unwind_tables=true
 """
 
 def v8deps():
@@ -73,19 +74,20 @@ def os_arch():
     return (u[0] + "_" + u[4]).lower().replace("amd64", "x86_64")
 
 def apply_mingw_patches():
-    patch_path = os.path.join(deps_path, os_arch())
-    v8_patches = os.path.join(patch_path,
-                        "0000-add-mingw-main-code-changes.patch")
-    subprocess.check_call(["git", "apply", "-v", v8_patches], cwd=v8_path)
-    toolchain_patches = os.path.join(patch_path,
-                        "0001-add-mingw-toolchain.patch")
-    subprocess.check_call(["git", "apply", "-v", toolchain_patches],
-                        cwd=os.path.join(v8_path, "build"))
+    v8_build_path = os.path.join(v8_path, "build")
+    apply_patch("0000-add-mingw-main-code-changes", v8_path)
+    apply_patch("0001-add-mingw-toolchain", v8_build_path)
+    apply_patch("0002-fix-mingw-unwind-tables", v8_build_path)
     update_last_change()
     zlib_path = os.path.join(v8_path, "third_party", "zlib")
     zlib_src_gn = os.path.join(patch_path, "zlib.gn")
     zlib_dst_gn = os.path.join(zlib_path, "BUILD.gn")
     shutil.copy(zlib_src_gn, zlib_dst_gn)
+
+def apply_patch(patch_name, working_dir):
+    patch_path = os.path.join(deps_path, os_arch())
+    patch_file = os.path.join(patch_path, patch_name + ".patch")
+    subprocess.check_call(["git", "apply", "-v", patch_file], cwd=working_dir)
 
 def update_last_change():
     import v8.build.util.lastchange as lastchange
