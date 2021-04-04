@@ -4,6 +4,7 @@ import os
 import subprocess
 import shutil
 import argparse
+import importlib
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--debug', dest='debug', action='store_true')
@@ -66,7 +67,7 @@ def v8deps():
     subprocess.check_call(["gclient", "sync", "--spec", spec],
                         cwd=deps_path,
                         env=env)
-    import v8.build.linux.sysroot_scripts.install-sysroot as install-sysroot
+    install_sysroot = importlib.import_module("v8.build.linux.sysroot_scripts.install-sysroot")
     install-sysroot.main(["install-sysroot", "--arch", "arm"])
 
 def os_arch():
