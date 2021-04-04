@@ -42,6 +42,7 @@ is_debug=%s
 is_clang=%s
 target_cpu="%s"
 v8_target_cpu="arm"
+cppgc_enable_caged_heap=false
 clang_use_chrome_plugins=false
 use_custom_libcxx=false
 use_sysroot=false
