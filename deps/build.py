@@ -41,6 +41,7 @@ gn_args = """
 is_debug=%s
 is_clang=%s
 target_cpu="%s"
+v8_target_cpu="arm"
 clang_use_chrome_plugins=false
 use_custom_libcxx=false
 use_sysroot=false
