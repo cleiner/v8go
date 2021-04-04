@@ -66,6 +66,8 @@ def v8deps():
     subprocess.check_call(["gclient", "sync", "--spec", spec],
                         cwd=deps_path,
                         env=env)
+    import v8.build.linux.sysroot_scripts.install-sysroot as install-sysroot
+    install-sysroot.main(["install-sysroot", "--arch", "arm"])
 
 def os_arch():
     return (platform.system() + "_" + args.arch).lower()
