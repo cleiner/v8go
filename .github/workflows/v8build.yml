@@ -27,6 +27,9 @@ jobs:
       - name: Install g++ (arm)
         if: matrix.arch == 'arm'
         run: sudo apt-get update && sudo apt-get install -y g++-arm-linux-gnueabihf g++-9-multilib-arm-linux-gnueabihf gcc-9-multilib-arm-linux-gnueabihf libc6-armhf-cross
+      - name: Install ARM sysroot
+        if: matrix.arch == 'arm'
+        run: deps/v8/build/linux/sysroot_scripts/install-sysroot.py --arch arm
       - name: Build V8 linux/${{ matrix.arch }}
         if: matrix.platform == 'ubuntu-latest'
         run: cd deps && ./build.py --no-clang --arch=${{ matrix.arch }}
