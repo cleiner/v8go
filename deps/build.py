@@ -68,7 +68,7 @@ def v8deps():
                         cwd=deps_path,
                         env=env)
     install_sysroot = importlib.import_module("v8.build.linux.sysroot_scripts.install-sysroot")
-    install-sysroot.main(["install-sysroot", "--arch", "arm"])
+    install_sysroot.main(["install-sysroot", "--arch", "arm"])
 
 def os_arch():
     return (platform.system() + "_" + args.arch).lower()
