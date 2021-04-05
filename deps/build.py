@@ -58,7 +58,7 @@ v8_enable_gdbjit=false
 v8_enable_i18n_support=false
 v8_enable_test_features=false
 v8_untrusted_code_mitigations=false
-v8_snapshot_toolchain="//build/toolchain/linux:gcc_x86_v8_arm"
+v8_snapshot_toolchain="//build/toolchain/linux:gcc_x86"
 #v8_enable_concurrent_marking
 #//build/toolchain/linux:gcc_arm
 #v8_snapshot_toolchain = "//build/toolchain/${host_os}:${_clang}${_cpus}"
