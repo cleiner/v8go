@@ -46,7 +46,7 @@ v8_target_cpu="arm"
 cppgc_enable_caged_heap=false
 clang_use_chrome_plugins=false
 use_custom_libcxx=false
-use_sysroot=false
+use_sysroot=true
 symbol_level=0
 strip_debug_info=true
 is_component_build=false
@@ -58,7 +58,7 @@ v8_enable_gdbjit=false
 v8_enable_i18n_support=false
 v8_enable_test_features=false
 v8_untrusted_code_mitigations=false
-v8_snapshot_toolchain="//build/toolchain/linux:gcc_x86"
+#v8_snapshot_toolchain="//build/toolchain/linux:gcc_x86"
 #v8_enable_concurrent_marking
 #//build/toolchain/linux:gcc_arm
 #v8_snapshot_toolchain = "//build/toolchain/${host_os}:${_clang}${_cpus}"
