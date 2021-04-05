@@ -7,8 +7,8 @@ jobs:
     name: Build V8 for ${{ matrix.platform }}/${{ matrix.arch }}
     strategy:
       matrix:
-        platform: [ubuntu-latest, macos-latest]
-        arch: [arm, arm64, x64]
+        platform: [ubuntu-latest]
+        arch: [arm]
         exclude:
           - platform: macos-latest
             arch: arm
