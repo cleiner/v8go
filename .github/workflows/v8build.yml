@@ -15,14 +15,12 @@ jobs:
               with:
                   submodules: true
                   fetch-depth: 1
-            - name: Update depot_tools fetch config
-              run: cd deps/depot_tools && git config --unset-all remote.origin.fetch; git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
-              shell: bash
+#            - name: Update depot_tools fetch config
+#              run: cd deps/depot_tools && git config --unset-all remote.origin.fetch; git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
+#              shell: bash
             - name: Build V8 linux
               if: matrix.platform == 'ubuntu-latest'
-              run: |
-                cd deps/depot_tools && git fetch && git checkout 07bd252
-                cd .. && ./build.py --no-clang
+              run: cd deps && ./build.py --no-clang
             - name: Build V8 macOS
               if: matrix.platform == 'macos-latest'
               run: cd deps && ./build.py
