@@ -108,7 +108,8 @@ def main():
 
     is_debug = 'true' if args.debug else 'false'
     is_clang = 'true' if args.clang else 'false'
-    gnargs = gn_args % (is_debug, is_clang, is_windows)
+    is_no_unwind = 'true' if is_windows else 'false'
+    gnargs = gn_args % (is_debug, is_clang, is_no_unwind)
     gen_args = gnargs.replace('\n', ' ')
     
     subprocess.check_call(cmd([gn_path, "gen", build_path, "--args=" + gen_args]),
