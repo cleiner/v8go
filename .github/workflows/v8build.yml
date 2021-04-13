@@ -21,8 +21,8 @@ jobs:
             - name: Build V8 linux
               if: matrix.platform == 'ubuntu-latest'
               run: |
-                cd deps/depot_tools && git checkout 07bd252
-                cd deps && ./build.py --no-clang
+                cd deps/depot_tools && git fetch && git checkout 07bd252
+                cd .. && ./build.py --no-clang
             - name: Build V8 macOS
               if: matrix.platform == 'macos-latest'
               run: cd deps && ./build.py
