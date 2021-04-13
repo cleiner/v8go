@@ -40,6 +40,7 @@ gclient_sln = [
 gn_args = """
 is_debug=%s
 is_clang=%s
+exclude_unwind_tables=%s
 clang_use_chrome_plugins=false
 use_custom_libcxx=false
 use_sysroot=false
@@ -54,7 +55,6 @@ v8_enable_gdbjit=false
 v8_enable_i18n_support=false
 v8_enable_test_features=false
 v8_untrusted_code_mitigations=false
-exclude_unwind_tables=true
 """
 
 def v8deps():
@@ -108,7 +108,7 @@ def main():
 
     is_debug = 'true' if args.debug else 'false'
     is_clang = 'true' if args.clang else 'false'
-    gnargs = gn_args % (is_debug, is_clang)
+    gnargs = gn_args % (is_debug, is_clang, is_windows)
     gen_args = gnargs.replace('\n', ' ')
     
     subprocess.check_call(cmd([gn_path, "gen", build_path, "--args=" + gen_args]),
